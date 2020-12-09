@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nested_navigator_2/book.dart';
-
+import 'package:nested_navigator_2/models/book.dart';
 
 class BookDetailScreen extends StatelessWidget {
   final Book book;
