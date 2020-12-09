@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:nested_navigator_2/core/abstract_widget_view.dart';
 import 'package:nested_navigator_2/navigation/navigation_state.dart';
 import 'package:nested_navigator_2/navigation/router_delegates.dart';
 
 class AppShell extends StatefulWidget {
   final NavigationState navState;
 
-  AppShell({@required this.navState});
+  AppShell(this.navState);
 
   @override
-  _AppShellState createState() => _AppShellState();
+  _AppShellController createState() => _AppShellController();
 }
 
-class _AppShellState extends State<AppShell> {
+class _AppShellController extends State<AppShell> {
   InnerRouterDelegate _routerDelegate;
   ChildBackButtonDispatcher _backButtonDispatcher;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+
     _routerDelegate = InnerRouterDelegate(widget.navState);
   }
 
@@ -36,19 +37,23 @@ class _AppShellState extends State<AppShell> {
     _backButtonDispatcher = Router.of(context)
         .backButtonDispatcher
         .createChildBackButtonDispatcher();
+
+    _backButtonDispatcher.takePriority();
   }
 
   @override
+  Widget build(BuildContext context) => _AppShellView(this);
+}
+
+class _AppShellView extends WidgetView<AppShell, _AppShellController> {
+  _AppShellView(_AppShellController state) : super(state);
+
+  @override
   Widget build(BuildContext context) {
-    var appState = widget.navState;
-
-    _backButtonDispatcher.takePriority();
-
     return Scaffold(
-      // appBar: AppBar(),
       body: Router(
-        routerDelegate: _routerDelegate,
-        backButtonDispatcher: _backButtonDispatcher,
+        routerDelegate: state._routerDelegate,
+        backButtonDispatcher: state._backButtonDispatcher,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -57,9 +62,9 @@ class _AppShellState extends State<AppShell> {
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), label: 'Settings'),
         ],
-        currentIndex: appState.selectedBottomTabIndex,
+        currentIndex: state.widget.navState.selectedBottomTabIndex,
         onTap: (newIndex) {
-          appState.selectedBottomTabIndex = newIndex;
+          state.widget.navState.selectedBottomTabIndex = newIndex;
         },
       ),
     );

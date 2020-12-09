@@ -40,8 +40,6 @@ class BooksDataService {
     var book = booksListSub.value
         .firstWhere((element) => element.id == id, orElse: () => null);
 
-    print('book: $book');
-
     _currentBookBS.add(book);
   }
 }

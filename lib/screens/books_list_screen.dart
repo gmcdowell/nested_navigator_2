@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nested_navigator_2/navigation/navigation_state.dart';
 import 'package:provider/provider.dart';
 
 import 'package:nested_navigator_2/core/abstract_widget_view.dart';
@@ -13,16 +14,24 @@ class BooksListScreen extends StatefulWidget {
 class _BooksListScreenController extends State<BooksListScreen> {
   BooksDataService _booksDataService;
 
+  NavigationState _navigatorState;
+
   @override
   void initState() {
     super.initState();
 
     _booksDataService = Provider.of<BooksDataService>(context, listen: false);
+
+    _navigatorState = Provider.of<NavigationState>(context, listen: false);
   }
 
   void handleOnTap(int idx) {
     print('idx: $idx');
-    _booksDataService.setCurrentBookById(idx);
+
+    // _booksDataService.setCurrentBookById(idx);
+
+    // navigate to /books/:id
+    _navigatorState.setSelectedBookById(idx);
   }
 
   @override

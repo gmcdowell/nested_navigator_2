@@ -67,8 +67,10 @@ class MainRouterDelegate extends RouterDelegate<RoutePath>
     return Navigator(
       key: navigatorKey,
       pages: [
-        /// books list
-        MaterialPage(child: AppShell(navState: navState)),
+        /// home (books list)
+        MaterialPage(
+          child: AppShell(navState),
+        ),
       ],
       onPopPage: _handleOnPopPage,
     );

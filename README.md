@@ -13,3 +13,4 @@ follows https://gist.github.com/johnpryan/bbca91e23bbb4d39247fa922533be7c9
 - makes use of Providers for state management (NavigationState still ChangeNotifier)
 
 
+### v1.0.2

@@ -17,10 +17,9 @@ class NavigationState extends ChangeNotifier {
   })  : _selectedBottomTabIndex = 0,
         _booksDataService = booksDataService {
     /// listen to currentBook changes
-    _selectedBookStreamSub = _booksDataService.currentBookSub.listen((event) {
-      print('event: $event');
-      notifyListeners();
-    });
+    // _selectedBookStreamSub = _booksDataService.currentBookSub.listen((event) {
+    //   notifyListeners();
+    // });
   }
 
   int get selectedBottomTabIndex => _selectedBottomTabIndex;
@@ -28,13 +27,13 @@ class NavigationState extends ChangeNotifier {
   set selectedBottomTabIndex(int idx) {
     _selectedBottomTabIndex = idx;
 
-    if (_selectedBottomTabIndex == 1) {
-      // remove this if you want to keep selected book
-      // when navigating between 'settings' and 'home'
-      // selectedBook = null;
-
-      _booksDataService.unsetCurrentBook();
-    }
+    // if (_selectedBottomTabIndex == 1) {
+    //   // remove this if you want to keep selected book
+    //   // when navigating between 'settings' and 'home'
+    //   // selectedBook = null;
+    //
+    //   _booksDataService.unsetCurrentBook();
+    // }
 
     notifyListeners();
   }
@@ -47,7 +46,9 @@ class NavigationState extends ChangeNotifier {
 
   // used by router delegate for url changes
   void setSelectedBookById(int id) {
-    _booksDataService.setCurrentBookById(id);
+    // _booksDataService.setCurrentBookById(id);
+
+    notifyListeners();
   }
 
   @override
