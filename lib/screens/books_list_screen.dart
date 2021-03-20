@@ -27,6 +27,10 @@ class _BooksListScreenController extends State<BooksListScreen> {
 
   void handleOnTap(int idx) {
     // navigate to /books/:id
+
+    /// this should NOT be bound to navigation state.
+    /// instead it should call a 'navigation method'
+    /// e.g. provider.
     _navigatorState.setSelectedBookById(idx);
   }
 

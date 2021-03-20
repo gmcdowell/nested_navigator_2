@@ -68,6 +68,8 @@ class _AppShellView extends WidgetView<AppShell, _AppShellController> {
         ],
         currentIndex: widget.navState.selectedBottomTabIndex,
         onTap: (newIndex) {
+          /// TODO needs to be decoupled from NavState
+          /// possibly use a Mediator instead???
           widget.navState.selectedBottomTabIndex = newIndex;
         },
       ),
