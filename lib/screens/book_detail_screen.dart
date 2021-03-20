@@ -21,8 +21,14 @@ class BookDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (book is Book) ...[
-              Text(book!.title, style: Theme.of(context).textTheme.headline6),
-              Text(book!.author, style: Theme.of(context).textTheme.subtitle1),
+              Text(
+                book!.title,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              Text(
+                book!.author,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
             ]
           ],
         ),

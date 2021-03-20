@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:nested_navigator_2/models/book.dart';
 import 'package:nested_navigator_2/services/books_data_service.dart';
 
@@ -39,7 +39,7 @@ class NavigationState extends ChangeNotifier {
   }
 
   Book? get selectedBook =>
-      _booksDataService.currentBookSub.valueWrapper!.value;
+      _booksDataService.currentBookSub.valueWrapper?.value;
 
   set selectedBook(Book? book) {
     _booksDataService.unsetCurrentBook();
@@ -47,7 +47,7 @@ class NavigationState extends ChangeNotifier {
 
   // used by router delegate for url changes
   void setSelectedBookById(int id) {
-    // _booksDataService.setCurrentBookById(id);
+    _booksDataService.setCurrentBookById(id);
 
     notifyListeners();
   }

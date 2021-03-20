@@ -66,9 +66,9 @@ class _AppShellView extends WidgetView<AppShell, _AppShellController> {
             label: 'Settings',
           ),
         ],
-        currentIndex: state.widget.navState.selectedBottomTabIndex,
+        currentIndex: widget.navState.selectedBottomTabIndex,
         onTap: (newIndex) {
-          state.widget.navState.selectedBottomTabIndex = newIndex;
+          widget.navState.selectedBottomTabIndex = newIndex;
         },
       ),
     );

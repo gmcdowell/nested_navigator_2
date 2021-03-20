@@ -26,10 +26,6 @@ class _BooksListScreenController extends State<BooksListScreen> {
   }
 
   void handleOnTap(int idx) {
-    print('idx: $idx');
-
-    // _booksDataService.setCurrentBookById(idx);
-
     // navigate to /books/:id
     _navigatorState.setSelectedBookById(idx);
   }

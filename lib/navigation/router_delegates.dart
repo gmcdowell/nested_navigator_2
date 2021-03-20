@@ -119,7 +119,9 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
       onPopPage: (route, result) {
         // navState.selectedBook = null;
         navState.setSelectedBookById(0);
+
         notifyListeners();
+
         return route.didPop(result);
       },
     );
