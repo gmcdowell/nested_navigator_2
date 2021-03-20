@@ -13,8 +13,8 @@ class AppShell extends StatefulWidget {
 }
 
 class _AppShellController extends State<AppShell> {
-  InnerRouterDelegate _routerDelegate;
-  ChildBackButtonDispatcher _backButtonDispatcher;
+  late InnerRouterDelegate _routerDelegate;
+  ChildBackButtonDispatcher? _backButtonDispatcher;
 
   @override
   void initState() {
@@ -35,10 +35,10 @@ class _AppShellController extends State<AppShell> {
     super.didChangeDependencies();
 
     _backButtonDispatcher = Router.of(context)
-        .backButtonDispatcher
+        .backButtonDispatcher!
         .createChildBackButtonDispatcher();
 
-    _backButtonDispatcher.takePriority();
+    _backButtonDispatcher!.takePriority();
   }
 
   @override
@@ -58,9 +58,13 @@ class _AppShellView extends WidgetView<AppShell, _AppShellController> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.library_books), label: 'Books'),
+            icon: Icon(Icons.library_books),
+            label: 'Books',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Settings'),
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
         ],
         currentIndex: state.widget.navState.selectedBottomTabIndex,
         onTap: (newIndex) {

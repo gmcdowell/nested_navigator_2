@@ -1,14 +1,15 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:rxdart/rxdart.dart';
 import 'package:nested_navigator_2/models/book.dart';
 
 class BooksDataService {
   /// books
-  BehaviorSubject<List<Book>> _booksListBS;
-  ValueStream<List<Book>> booksListSub;
+  late BehaviorSubject<List<Book>> _booksListBS;
+  ValueStream<List<Book>>? booksListSub;
 
   /// current book
-  BehaviorSubject<Book> _currentBookBS;
-  ValueStream<Book> currentBookSub;
+  late BehaviorSubject<Book?> _currentBookBS;
+  late ValueStream<Book?> currentBookSub;
 
   BooksDataService() {
     /// seed a collection of books
@@ -20,7 +21,7 @@ class BooksDataService {
 
     booksListSub = _booksListBS.stream;
 
-    _currentBookBS = BehaviorSubject<Book>();
+    _currentBookBS = BehaviorSubject<Book?>();
     currentBookSub = _currentBookBS.stream;
   }
 
@@ -37,8 +38,8 @@ class BooksDataService {
 
   void setCurrentBookById(int id) {
     /// attempt to find by id
-    var book = booksListSub.value
-        .firstWhere((element) => element.id == id, orElse: () => null);
+    var book =
+        booksListSub!.value!.firstWhereOrNull((element) => element.id == id);
 
     _currentBookBS.add(book);
   }

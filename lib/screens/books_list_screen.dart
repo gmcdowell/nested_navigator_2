@@ -12,9 +12,9 @@ class BooksListScreen extends StatefulWidget {
 }
 
 class _BooksListScreenController extends State<BooksListScreen> {
-  BooksDataService _booksDataService;
+  late BooksDataService _booksDataService;
 
-  NavigationState _navigatorState;
+  late NavigationState _navigatorState;
 
   @override
   void initState() {
@@ -55,7 +55,7 @@ class _BooksListScreenView
               ),
               body: ListView(
                 children: [
-                  for (var book in snapshot.data)
+                  for (var book in snapshot.data!)
                     ListTile(
                       title: Text(book.title),
                       subtitle: Text(book.author),

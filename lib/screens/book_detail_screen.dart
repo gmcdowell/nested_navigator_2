@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:nested_navigator_2/models/book.dart';
 
 class BookDetailScreen extends StatelessWidget {
-  final Book book;
+  final Book? book;
 
   BookDetailScreen({
-    Key key,
-    @required this.book,
+    Key? key,
+    required this.book,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(book.title),
+        title: Text(book!.title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -21,8 +21,8 @@ class BookDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (book is Book) ...[
-              Text(book.title, style: Theme.of(context).textTheme.headline6),
-              Text(book.author, style: Theme.of(context).textTheme.subtitle1),
+              Text(book!.title, style: Theme.of(context).textTheme.headline6),
+              Text(book!.author, style: Theme.of(context).textTheme.subtitle1),
             ]
           ],
         ),

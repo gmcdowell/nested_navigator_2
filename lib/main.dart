@@ -35,9 +35,9 @@ class NestedRouterDemoApp extends StatefulWidget {
 }
 
 class _NestedRouterDemoAppState extends State<NestedRouterDemoApp> {
-  MainRouterDelegate _routerDelegate;
+  late MainRouterDelegate _routerDelegate;
 
-  RoutePathInformationParser _routeInformationParser;
+  late RoutePathInformationParser _routeInformationParser;
 
   @override
   void initState() {

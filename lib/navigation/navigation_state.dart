@@ -9,12 +9,12 @@ class NavigationState extends ChangeNotifier {
 
   int _selectedBottomTabIndex;
 
-  StreamSubscription<Book> _selectedBookStreamSub;
+  late StreamSubscription<Book> _selectedBookStreamSub;
 
   NavigationState({
-    Key key,
-    @required BooksDataService booksDataService,
-  })  : _selectedBottomTabIndex = 0,
+    Key? key,
+    required BooksDataService booksDataService,
+  })   : _selectedBottomTabIndex = 0,
         _booksDataService = booksDataService {
     /// listen to currentBook changes
     // _selectedBookStreamSub = _booksDataService.currentBookSub.listen((event) {
@@ -38,9 +38,10 @@ class NavigationState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Book get selectedBook => _booksDataService.currentBookSub.value;
+  Book? get selectedBook =>
+      _booksDataService.currentBookSub.valueWrapper!.value;
 
-  set selectedBook(Book book) {
+  set selectedBook(Book? book) {
     _booksDataService.unsetCurrentBook();
   }
 

@@ -16,8 +16,8 @@ class MainRouterDelegate extends RouterDelegate<RoutePath>
   NavigationState navState;
 
   MainRouterDelegate({
-    Key key,
-    @required this.navState,
+    Key? key,
+    required this.navState,
   }) : navigatorKey = GlobalKey<NavigatorState>() {
     navState.addListener(notifyListeners);
   }
@@ -29,7 +29,7 @@ class MainRouterDelegate extends RouterDelegate<RoutePath>
       if (navState.selectedBook is! Book) {
         return BooksListPath();
       } else {
-        return BookDetailsPath(navState.selectedBook.id);
+        return BookDetailsPath(navState.selectedBook!.id);
       }
     }
   }

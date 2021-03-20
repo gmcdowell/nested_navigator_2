@@ -5,9 +5,9 @@ class RoutePathInformationParser extends RouteInformationParser<RoutePath> {
   @override
   Future<RoutePath> parseRouteInformation(
       RouteInformation routeInformation) async {
-    final uri = Uri.parse(routeInformation.location);
+    final uri = Uri.parse(routeInformation.location!);
 
-    RoutePath routePath;
+    RoutePath? routePath;
 
     // handle '/'
     if (uri.pathSegments.isEmpty) {
